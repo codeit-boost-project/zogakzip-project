@@ -1,6 +1,5 @@
 import express from 'express';
 import groupRoutes from './routes/groupRoutes.js';
-import postRoutes from './routes/postRoutes.js';
 import commentRoutes from './routes/commentRoutes.js';
 import imageRoutes from './routes/imageRoutes.js';
 import cors from 'cors';
