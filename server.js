@@ -1,5 +1,6 @@
 import express from 'express';
 import groupRoutes from './routes/groupRoutes.js';
+import postRoutes from './routes/postRoutes.js';
 import commentRoutes from './routes/commentRoutes.js';
 import imageRoutes from './routes/imageRoutes.js';
 import cors from 'cors';
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use('/api', groupRoutes); // 그룹
 
 app.use('/api', commentRoutes); // 댓글
+
+app.use('/api', postRoutes) // 게시글
 
 app.use('/api/image', imageRoutes); // 이미지
 
