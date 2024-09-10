@@ -8,7 +8,7 @@ import {
   checkPostPermissions,
   likePost,
   checkPostVisibility,
-} from '../postController.js';
+} from '../controllers/postController.js';
 
 const router = express.Router();
 
