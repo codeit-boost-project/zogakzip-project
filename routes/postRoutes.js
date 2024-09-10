@@ -24,3 +24,5 @@ router.get('/posts/:postId', viewPostDetails); // 게시글 상세 정보 조회
 router.post('/posts/:postId/verify-password', checkPostPermissions) // 게시글 조회 권한 확인 -> 완료
 router.post('/posts/:postId/like', likePost) // 게시글 공감 하기 -> 완료
 router.get('/posts/:postId/is-public', checkPostVisibility) // 게시글 공개 여부 확인 -> 완료
+
+export default router;
