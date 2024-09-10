@@ -1,6 +1,6 @@
 export const GROUPS = [
   {
-    id: 1,
+    id: 100,
     name: "달봉이네 가족",
     imageUrl: "http://localhost:3000/uploads/1725426705171.jpg",
     introduction: "달봉이네 추억 상자입니다. 가족의 소중한 기억들을 함께 나눠요.",
@@ -11,7 +11,7 @@ export const GROUPS = [
     postCount: 1,
   },
   {
-    id: 2,
+    id: 200,
     name: "여행 애호가들",
     imageUrl: "http://localhost:3000/uploads/1725427177607.jpg",
     introduction: "여행지에서의 추억을 나누는 공간입니다.",
@@ -22,7 +22,7 @@ export const GROUPS = [
     postCount: 8,
   },
   {
-    id: 3,
+    id: 300,
     name: "스포츠 팬클럽",
     imageUrl: "http://localhost:3000/uploads/1725427149073.jpg",
     introduction: "스포츠와 관련된 추억을 나누는 팬클럽입니다.",
@@ -33,7 +33,7 @@ export const GROUPS = [
     postCount: 6,
   },
   {
-    id: 4,
+    id: 400,
     name: "독서 클럽",
     imageUrl: "http://localhost:3000/uploads/1725426768159.jpeg",
     introduction: "읽었던 책과 느꼈던 감상을 기억해요.",
@@ -44,7 +44,7 @@ export const GROUPS = [
     postCount: 5,
   },
   {
-    id: 5,
+    id: 500,
     name: "등산 동호회",
     imageUrl: "http://localhost:3000/uploads/1725427124903.jpg",
     introduction: "등산의 순간과 풍경을 함께 기억하는 모임입니다.",
@@ -55,7 +55,7 @@ export const GROUPS = [
     postCount: 7,
   },
   {
-    id: 6,
+    id: 600,
     name: "음악 감상",
     imageUrl: "http://localhost:3000/uploads/1725426890997.jpeg",
     introduction: "음악으로 남긴 기억들을 공유합니다.",
@@ -66,7 +66,7 @@ export const GROUPS = [
     postCount: 4,
   },
   {
-    id: 7,
+    id: 700,
     name: "사진 동호회",
     imageUrl: "http://localhost:3000/uploads/1725427102042.jpg",
     introduction: "사진을 통해 남긴 추억을 나누는 그룹입니다.",
@@ -77,7 +77,7 @@ export const GROUPS = [
     postCount: 9,
   },
   {
-    id: 8,
+    id: 800,
     name: "요가 클래스",
     imageUrl: "http://localhost:3000/uploads/1725427012497.jpg",
     introduction: "요가 수련 중 느낀 순간들을 기억합니다.",
@@ -88,7 +88,7 @@ export const GROUPS = [
     postCount: 3,
   },
   {
-    id: 9,
+    id: 900,
     name: "영화 감상 클럽",
     imageUrl: "http://localhost:3000/uploads/1725426980997.jpg",
     introduction: "영화를 통해 느꼈던 감동을 기록하고 공유합니다.",
@@ -99,7 +99,7 @@ export const GROUPS = [
     postCount: 2,
   },
   {
-    id: 10,
+    id: 1000,
     name: "요리 연구회",
     imageUrl: "http://localhost:3000/uploads/1725426946656.jpg",
     introduction: "다양한 요리와 그 순간을 기억하는 모임입니다.",
@@ -113,8 +113,8 @@ export const GROUPS = [
 
 export const POSTS = [
   {
-    id: 1,
-    groupId: 1,
+    id: 100,
+    groupId: 100,
     nickname: "달봉이",
     title: "오늘 인천에서 월척을 낚았어요!",
     imageUrl: "http://localhost:3000/uploads/1725427331914.jpg",
@@ -129,8 +129,8 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 2,
-    groupId: 2,
+    id: 200,
+    groupId: 200,
     nickname: "Traveler1",
     title: "파리에서의 아름다운 저녁",
     imageUrl: "http://example.com/image1",
@@ -145,8 +145,8 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 3,
-    groupId: 3,
+    id: 300,
+    groupId: 300,
     nickname: "SportyFan",
     title: "2024 올림픽 경기 관람",
     imageUrl: "http://example.com/image1",
@@ -161,8 +161,8 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 4,
-    groupId: 4,
+    id: 400,
+    groupId: 400,
     nickname: "BookLover",
     title: "첫 독서 모임의 추억",
     imageUrl: "http://example.com/image1",
@@ -177,8 +177,8 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 5,
-    groupId: 5,
+    id: 500,
+    groupId: 500,
     nickname: "HikerJoe",
     title: "설악산 등반의 기쁨",
     imageUrl: "http://example.com/image1",
@@ -193,8 +193,8 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 6,
-    groupId: 6,
+    id: 600,
+    groupId: 600,
     nickname: "MusicFan",
     title: "첫 콘서트에서의 감동",
     imageUrl: "http://example.com/image1",
@@ -209,8 +209,8 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 7,
-    groupId: 7,
+    id: 700,
+    groupId: 700,
     nickname: "PhotoGrapher",
     title: "첫 사진 전시회",
     imageUrl: "http://example.com/image1",
@@ -225,8 +225,8 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 8,
-    groupId: 8,
+    id: 800,
+    groupId: 800,
     nickname: "YogaLover",
     title: "해변에서의 아침 요가",
     imageUrl: "http://example.com/image1",
@@ -241,8 +241,8 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 9,
-    groupId: 9,
+    id: 900,
+    groupId: 900,
     nickname: "MovieBuff",
     title: "영화 '기생충' 상영회",
     imageUrl: "http://example.com/image1",
@@ -257,8 +257,8 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 10,
-    groupId: 10,
+    id: 1000,
+    groupId: 1000,
     nickname: "ChefMaster",
     title: "최고의 요리 경연대회",
     imageUrl: "http://example.com/image1",
@@ -276,80 +276,80 @@ export const POSTS = [
 
 export const COMMENTS = [
   {
-    id: 1,
-    postId: 1,
+    id: 100,
+    postId: 100,
     nickname: "FishingFan",
     content: "와! 정말 대단해요. 그때의 기쁨이 느껴져요!",
     createdAt: new Date(),
     password: "fish123"
   },
   {
-    id: 2,
-    postId: 2,
+    id: 200,
+    postId: 200,
     nickname: "ParisLover",
     content: "파리의 저녁 정말 아름다웠겠네요. 사진이 너무 멋져요!",
     createdAt: new Date(),
     password: "paris123"
   },
   {
-    id: 3,
-    postId: 3,
+    id: 300,
+    postId: 300,
     nickname: "OlympicsFan",
     content: "올림픽 경기 현장의 열기가 그대로 전해지네요! 정말 멋진 경험이었겠어요.",
     createdAt: new Date(),
     password: "olym123"
   },
   {
-    id: 4,
-    postId: 4,
+    id: 400,
+    postId: 400,
     nickname: "Bookworm",
     content: "독서 모임 너무 재밌어 보여요. 다음 모임에도 꼭 참여하고 싶어요.",
     createdAt: new Date(),
     password: "read123"
   },
   {
-    id: 5,
-    postId: 5,
+    id: 500,
+    postId: 500,
     nickname: "HikingLover",
     content: "설악산 정상에서의 사진 멋져요. 꼭 한 번 가보고 싶어요!",
     createdAt: new Date(),
     password: "mountain123"
   },
   {
-    id: 6,
-    postId: 6,
+    id: 600,
+    postId: 600,
     nickname: "ConcertFan",
     content: "첫 콘서트의 감동이 전해져요. 정말 특별한 순간이었겠네요!",
     createdAt: new Date(),
     password: "concert123"
   },
   {
-    id: 7,
-    postId: 7,
+    id: 700,
+    postId: 700,
     nickname: "PhotoEnthusiast",
     content: "전시회 축하드려요! 사진들이 정말 인상 깊어요.",
     createdAt: new Date(),
     password: "photo123"
   },
   {
-    id: 8,
-    postId: 8,
+    id: 800,
+    postId: 800,
     nickname: "BeachLover",
     content: "해변에서의 요가라니 너무 평화롭겠어요. 멋진 경험이었을 것 같아요.",
     createdAt: new Date(),
     password: "yoga123"
   },
   {
-    id: 9,
-    postId: 9,
+    id: 900,
+    postId: 900,
     nickname: "MovieCritic",
     content: "기생충 다시 보기 정말 좋았겠네요. 상영회가 더 특별했겠어요!",
     createdAt: new Date(),
     password: "movie123"
   },
   {
-    id: 10,
-    postId: 10,
+    id: 1000,
+    postId: 1000,
     nickname: "CookFanatic",
     content: "요리 경연대회 우승 축하드려요! 멋진 순간이었을 거예요.",
     createdAt: new Date(),
