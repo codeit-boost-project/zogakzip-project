@@ -9,11 +9,11 @@ export const registerPost = async (req, res) => {
     const { nickname, title, content, postPassword, groupPassword, imageUrl, tags, location, moment, isPublic } = req.body; // 요청 본문에서 데이터 가져오기
 
     // 필수 데이터가 모두 존재하는지 확인
-    if (!nickname || !title || !content || !postPassword || !groupPassword) {
+    if (!nickname || !title || !content || !postPassword) {
       return res.status(400).json({ message: '잘못된 요청입니다. 필수 데이터가 누락되었습니다.' });
     }
 
-    // 그룹 존재 여부 확인 및 비밀번호 검증
+    // 그룹 존재 여부 확인
     const group = await prisma.group.findUnique({
       where: { id: Number(groupId) }
     });
@@ -22,8 +22,15 @@ export const registerPost = async (req, res) => {
       return res.status(404).json({ message: '그룹을 찾을 수 없습니다.' });
     }
 
-    if (group.password !== groupPassword) {
-      return res.status(403).json({ message: '그룹 비밀번호가 일치하지 않습니다.' });
+    // 비공개 그룹일 경우에만 비밀번호 검증
+    if (!group.isPublic) {
+      if (!groupPassword) {
+        return res.status(400).json({ message: '비공개 그룹에 대한 비밀번호가 필요합니다.' });
+      }
+
+      if (group.password !== groupPassword) {
+        return res.status(403).json({ message: '그룹 비밀번호가 일치하지 않습니다.' });
+      }
     }
 
     // 게시글 생성
@@ -75,6 +82,7 @@ export const registerPost = async (req, res) => {
     res.status(500).json({ error: '게시글 등록 중 오류 발생', details: error.message });
   }
 };
+
 
 // 게시글 목록 조회 함수
 export const viewPostList = async (req, res) => {

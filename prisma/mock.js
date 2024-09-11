@@ -1,8 +1,7 @@
 export const GROUPS = [
   {
-    id: 100,
     name: "달봉이네 가족",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "달봉이네 추억 상자입니다. 가족의 소중한 기억들을 함께 나눠요.",
     isPublic: true,
     password: "family123",
@@ -11,9 +10,8 @@ export const GROUPS = [
     postCount: 1,
   },
   {
-    id: 200,
     name: "여행 애호가들",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "여행지에서의 추억을 나누는 공간입니다.",
     isPublic: true,
     password: "travel123",
@@ -22,9 +20,8 @@ export const GROUPS = [
     postCount: 8,
   },
   {
-    id: 300,
     name: "스포츠 팬클럽",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "스포츠와 관련된 추억을 나누는 팬클럽입니다.",
     isPublic: true,
     password: "sports123",
@@ -33,9 +30,8 @@ export const GROUPS = [
     postCount: 6,
   },
   {
-    id: 400,
     name: "독서 클럽",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "읽었던 책과 느꼈던 감상을 기억해요.",
     isPublic: false,
     password: "book123",
@@ -44,9 +40,8 @@ export const GROUPS = [
     postCount: 5,
   },
   {
-    id: 500,
     name: "등산 동호회",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "등산의 순간과 풍경을 함께 기억하는 모임입니다.",
     isPublic: true,
     password: "hike123",
@@ -55,9 +50,8 @@ export const GROUPS = [
     postCount: 7,
   },
   {
-    id: 600,
     name: "음악 감상",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "음악으로 남긴 기억들을 공유합니다.",
     isPublic: false,
     password: "music123",
@@ -66,9 +60,8 @@ export const GROUPS = [
     postCount: 4,
   },
   {
-    id: 700,
     name: "사진 동호회",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "사진을 통해 남긴 추억을 나누는 그룹입니다.",
     isPublic: true,
     password: "photo123",
@@ -77,9 +70,8 @@ export const GROUPS = [
     postCount: 9,
   },
   {
-    id: 800,
     name: "요가 클래스",
-    imageUrl: "/uploads/1725427012497.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "요가 수련 중 느낀 순간들을 기억합니다.",
     isPublic: true,
     password: "yoga123",
@@ -88,9 +80,8 @@ export const GROUPS = [
     postCount: 3,
   },
   {
-    id: 900,
     name: "영화 감상 클럽",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "영화를 통해 느꼈던 감동을 기록하고 공유합니다.",
     isPublic: false,
     password: "movie123",
@@ -99,9 +90,8 @@ export const GROUPS = [
     postCount: 2,
   },
   {
-    id: 1000,
     name: "요리 연구회",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     introduction: "다양한 요리와 그 순간을 기억하는 모임입니다.",
     isPublic: true,
     password: "cook123",
@@ -113,11 +103,9 @@ export const GROUPS = [
 
 export const POSTS = [
   {
-    id: 100,
-    groupId: 100,
     nickname: "달봉이",
     title: "오늘 인천에서 월척을 낚았어요!",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "인천에서 가족과 함께한 낚시에서 월척을 낚았어요. 모두가 놀랐던 순간!",
     tags: "가족, 낚시, 인천",
     location: "인천, 한국",
@@ -129,11 +117,9 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 200,
-    groupId: 200,
     nickname: "Traveler1",
     title: "파리에서의 아름다운 저녁",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "에펠탑을 배경으로 한 아름다운 저녁. 잊을 수 없는 순간입니다.",
     tags: "여행, 파리",
     location: "파리, 프랑스",
@@ -145,11 +131,9 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 300,
-    groupId: 300,
     nickname: "SportyFan",
     title: "2024 올림픽 경기 관람",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "2024 올림픽에서의 경기 관람. 현장의 열기가 대단했어요!",
     tags: "올림픽, 경기, 스포츠",
     location: "파리, 프랑스",
@@ -161,11 +145,9 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 400,
-    groupId: 400,
     nickname: "BookLover",
     title: "첫 독서 모임의 추억",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "독서 모임에서 함께했던 첫날. 다양한 이야기를 나눴던 그 시간.",
     tags: "독서, 모임",
     location: "부산, 한국",
@@ -177,11 +159,9 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 500,
-    groupId: 500,
     nickname: "HikerJoe",
     title: "설악산 등반의 기쁨",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "친구들과 함께한 설악산 등반. 정상에서의 기쁨은 말로 표현할 수 없어요.",
     tags: "등산, 설악산",
     location: "강원도, 한국",
@@ -193,11 +173,9 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 600,
-    groupId: 600,
     nickname: "MusicFan",
     title: "첫 콘서트에서의 감동",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "어렸을 때 처음 갔던 콘서트. 그날의 감동은 아직도 생생해요.",
     tags: "음악, 콘서트",
     location: "뉴욕, 미국",
@@ -209,11 +187,9 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 700,
-    groupId: 700,
     nickname: "PhotoGrapher",
     title: "첫 사진 전시회",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "제가 찍은 사진들이 전시된 첫 전시회. 정말 잊을 수 없는 기억이에요.",
     tags: "사진, 전시회",
     location: "서울, 한국",
@@ -225,11 +201,9 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 800,
-    groupId: 800,
     nickname: "YogaLover",
     title: "해변에서의 아침 요가",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "바닷바람을 맞으며 즐긴 해변에서의 아침 요가. 최고의 힐링 시간이었어요.",
     tags: "요가, 해변",
     location: "하와이, 미국",
@@ -241,11 +215,9 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 900,
-    groupId: 900,
     nickname: "MovieBuff",
     title: "영화 '기생충' 상영회",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "친구들과 함께 한 기생충 상영회. 다시 보니 더욱 의미가 깊었어요.",
     tags: "영화, 기생충",
     location: "서울, 한국",
@@ -257,11 +229,9 @@ export const POSTS = [
     createdAt: new Date(),
   },
   {
-    id: 1000,
-    groupId: 1000,
     nickname: "ChefMaster",
     title: "최고의 요리 경연대회",
-    imageUrl: "",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171",
     content: "요리 경연대회에서 우승했던 순간. 그날의 환호성과 기쁨이 아직도 느껴져요.",
     tags: "요리, 경연대회",
     location: "도쿄, 일본",
@@ -276,84 +246,63 @@ export const POSTS = [
 
 export const COMMENTS = [
   {
-    id: 100,
-    postId: 100,
     nickname: "FishingFan",
     content: "와! 정말 대단해요. 그때의 기쁨이 느껴져요!",
     createdAt: new Date(),
     password: "fish123"
   },
   {
-    id: 200,
-    postId: 200,
     nickname: "ParisLover",
     content: "파리의 저녁 정말 아름다웠겠네요. 사진이 너무 멋져요!",
     createdAt: new Date(),
     password: "paris123"
   },
   {
-    id: 300,
-    postId: 300,
     nickname: "OlympicsFan",
     content: "올림픽 경기 현장의 열기가 그대로 전해지네요! 정말 멋진 경험이었겠어요.",
     createdAt: new Date(),
     password: "olym123"
   },
   {
-    id: 400,
-    postId: 400,
     nickname: "Bookworm",
     content: "독서 모임 너무 재밌어 보여요. 다음 모임에도 꼭 참여하고 싶어요.",
     createdAt: new Date(),
     password: "read123"
   },
   {
-    id: 500,
-    postId: 500,
     nickname: "HikingLover",
     content: "설악산 정상에서의 사진 멋져요. 꼭 한 번 가보고 싶어요!",
     createdAt: new Date(),
     password: "mountain123"
   },
   {
-    id: 600,
-    postId: 600,
     nickname: "ConcertFan",
     content: "첫 콘서트의 감동이 전해져요. 정말 특별한 순간이었겠네요!",
     createdAt: new Date(),
     password: "concert123"
   },
   {
-    id: 700,
-    postId: 700,
     nickname: "PhotoEnthusiast",
     content: "전시회 축하드려요! 사진들이 정말 인상 깊어요.",
     createdAt: new Date(),
     password: "photo123"
   },
   {
-    id: 800,
-    postId: 800,
     nickname: "BeachLover",
     content: "해변에서의 요가라니 너무 평화롭겠어요. 멋진 경험이었을 것 같아요.",
     createdAt: new Date(),
     password: "yoga123"
   },
   {
-    id: 900,
-    postId: 900,
     nickname: "MovieCritic",
     content: "기생충 다시 보기 정말 좋았겠네요. 상영회가 더 특별했겠어요!",
     createdAt: new Date(),
     password: "movie123"
   },
   {
-    id: 1000,
-    postId: 1000,
     nickname: "CookFanatic",
     content: "요리 경연대회 우승 축하드려요! 멋진 순간이었을 거예요.",
     createdAt: new Date(),
     password: "win123"
   },
 ];
-

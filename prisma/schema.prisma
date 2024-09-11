@@ -15,18 +15,18 @@ datasource db {
 }
 
 model Group {
-  id           Int          @id @default(autoincrement())
-  name         String       @db.VarChar(50)
-  imageUrl     String?      @db.VarChar(255)
+  id           Int       @id @default(autoincrement())
+  name         String    @db.VarChar(50)
+  imageUrl     String?   @db.VarChar(255)
   introduction String
   isPublic     Boolean
-  password     String       @db.VarChar(10)
-  createdAt    DateTime     @default(now())
-  likeCount    Int          @default(0)
-  postCount    Int          @default(0)
-  badgeCount   Int          @default(0)
+  password     String    @db.VarChar(10)
+  createdAt    DateTime  @default(now())
+  likeCount    Int       @default(0)
+  postCount    Int       @default(0)
+  badgeCount   Int       @default(0)
   posts        Post[]
-  groupBadges  GroupBadge[]
+  badges       Badge[]   @relation("GroupBadges")
 
   @@index([name])
   @@index([isPublic, createdAt])
@@ -65,16 +65,7 @@ model Comment {
 }
 
 model Badge {
-  id          Int          @id
-  name        String       @db.VarChar(255)
-  groupBadges GroupBadge[]
-}
-
-model GroupBadge {
-  id         Int      @id @default(autoincrement())
-  groupId    Int?
-  group      Group?   @relation(fields: [groupId], references: [id])
-  badgeId    Int?
-  badge      Badge?   @relation(fields: [badgeId], references: [id])
-  acquiredAt DateTime @default(now())
+  id      Int      @id @default(autoincrement())
+  name    String   @db.VarChar(255)
+  groups  Group[]  @relation("GroupBadges")
 }

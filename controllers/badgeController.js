@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-
 // 모든 배지 가져오기
 export const getAllBadges = async () => {
   try {
@@ -16,32 +15,34 @@ export const getAllBadges = async () => {
 // 그룹에 배지 부여
 export const grantBadgeToGroup = async (groupId, badgeIds) => {
   try {
-    const existingBadges = await prisma.groupBadge.findMany({
-      where: { groupId },
-      select: { badgeId: true },
-    });
-
-    const existingBadgeIds = existingBadges.map(b => b.badgeId);
-    const newBadgeIds = badgeIds.filter(id => !existingBadgeIds.includes(id));
-
-    // 배지와 그룹이 존재하는지 먼저 확인
+    // 그룹과 배지가 존재하는지 먼저 확인
     const [group, badges] = await Promise.all([
       prisma.group.findUnique({ where: { id: groupId } }),
-      prisma.badge.findMany({ where: { id: { in: newBadgeIds } } })
+      prisma.badge.findMany({ where: { id: { in: badgeIds } } })
     ]);
 
     if (!group) throw new Error('Group not found');
-    if (newBadgeIds.length > 0 && badges.length !== newBadgeIds.length) {
+    if (badgeIds.length > 0 && badges.length !== badgeIds.length) {
       throw new Error('One or more badges do not exist');
     }
 
+    // 기존 배지들과 중복되지 않는 새 배지 추가
+    const existingBadges = await prisma.group.findUnique({
+      where: { id: groupId },
+      select: { badges: { select: { id: true } } }
+    });
+
+    const existingBadgeIds = existingBadges.badges.map(b => b.id);
+    const newBadgeIds = badgeIds.filter(id => !existingBadgeIds.includes(id));
+
     if (newBadgeIds.length > 0) {
-      await prisma.groupBadge.createMany({
-        data: newBadgeIds.map(badgeId => ({
-          groupId,
-          badgeId,
-        })),
-        skipDuplicates: true,
+      await prisma.group.update({
+        where: { id: groupId },
+        data: {
+          badges: {
+            connect: newBadgeIds.map(badgeId => ({ id: badgeId }))
+          }
+        }
       });
       console.log(`그룹 ${groupId}에 배지 ${newBadgeIds} 부여 완료.`);
     }

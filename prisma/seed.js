@@ -8,8 +8,7 @@ import {
 const prisma = new PrismaClient();
 
 
-
-// 뱃지 종류
+// 배지 종류
 const badges = [
   { id: 1, name: "7일 연속 게시글 등록" },
   { id: 2, name: "게시글 수 20개 이상 등록" },
@@ -22,7 +21,6 @@ const badges = [
 async function main() {
 
   // 기존 데이터 삭제
-  await prisma.groupBadge.deleteMany();
   await prisma.badge.deleteMany();
   await prisma.comment.deleteMany();
   await prisma.post.deleteMany();
@@ -30,24 +28,33 @@ async function main() {
 
 
   // 그룹 데이터 시딩
-  await prisma.group.createMany({
-    data: GROUPS,
-    skipDuplicates: true,
-  });
-
-
-  // 추억(게시물) 데이터 시딩
-  await Promise.all(
-    POSTS.map(async (post) => {
-      await prisma.post.create({ data: post });
+  const createdGroups = await Promise.all(
+    GROUPS.map(async (group) => {
+      return prisma.group.create({ data: group });
     })
   );
-  
+
+  // 게시글 데이터 시딩
+  const createdPosts = await Promise.all(
+    POSTS.map(async (post, index) => {
+      return prisma.post.create({ 
+        data: {
+          ...post,
+          groupId: createdGroups[index].id // 생성된 그룹 ID 사용
+        }
+      });
+    })
+  );
 
   // 댓글 데이터 시딩
   await Promise.all(
-    COMMENTS.map(async (comment) => {
-      await prisma.comment.create({ data: comment });
+    COMMENTS.map(async (comment, index) => {
+      return prisma.comment.create({
+        data: {
+          ...comment,
+          postId: createdPosts[index % createdPosts.length].id // 생성된 게시글 ID 사용
+        }
+      });
     })
   );
 
