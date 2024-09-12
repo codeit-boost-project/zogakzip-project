@@ -293,7 +293,11 @@ export const registerComment = async (req, res) => {
 // 댓글 목록 조회
 export const viewCommentList = async (req, res) => {
   const { postId } = req.params; // URL 매개변수에서 postId 가져오기
-  const { page = 1, pageSize = 10 } = req.query; // 페이지와 페이지 크기 쿼리 파라미터 가져오기
+  let { page = 1, pageSize = 10 } = req.query; // 페이지와 페이지 크기 쿼리 파라미터 가져오기
+
+  // page와 pageSize를 정수로 변환
+  page = parseInt(page, 10);
+  pageSize = parseInt(pageSize, 10);
 
   // 페이지와 페이지 크기 검증
   if (isNaN(page) || isNaN(pageSize) || page < 1 || pageSize < 1) {
@@ -303,7 +307,7 @@ export const viewCommentList = async (req, res) => {
   try {
     // 게시글 존재 여부 확인
     const post = await prisma.post.findUnique({
-      where: { id: parseInt(postId) },
+      where: { id: parseInt(postId, 10) },
     });
 
     if (!post) {
@@ -312,12 +316,12 @@ export const viewCommentList = async (req, res) => {
 
     // 댓글 총 개수 조회
     const totalItemCount = await prisma.comment.count({
-      where: { postId: parseInt(postId) },
+      where: { postId: parseInt(postId, 10) },
     });
 
     // 댓글 목록 조회
     const comments = await prisma.comment.findMany({
-      where: { postId: parseInt(postId) },
+      where: { postId: parseInt(postId, 10) },
       skip: (page - 1) * pageSize,
       take: pageSize,
       orderBy: { createdAt: 'desc' }, // 최신 댓글부터 정렬
@@ -328,7 +332,7 @@ export const viewCommentList = async (req, res) => {
 
     // 성공적인 응답 반환
     return res.status(200).json({
-      currentPage: parseInt(page),
+      currentPage: page,
       totalPages,
       totalItemCount,
       data: comments.map(comment => ({
