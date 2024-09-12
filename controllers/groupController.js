@@ -326,3 +326,154 @@ export const likeGroup = async (req, res) => {
     }
 };
 
+// 게시물 등록
+export const registerPost = async (req, res) => {
+  try {
+    const { groupId } = req.params; // URL 파라미터에서 groupId를 가져옴
+    const { nickname, title, content, postPassword, groupPassword, imageUrl, tags, location, moment, isPublic } = req.body; // 요청 본문에서 데이터 가져오기
+
+    // 필수 데이터가 모두 존재하는지 확인
+    if (!nickname || !title || !content || !postPassword) {
+      return res.status(400).json({ message: '잘못된 요청입니다. 필수 데이터가 누락되었습니다.' });
+    }
+
+    // 그룹 존재 여부 확인
+    const group = await prisma.group.findUnique({
+      where: { id: Number(groupId) }
+    });
+
+    if (!group) {
+      return res.status(404).json({ message: '그룹을 찾을 수 없습니다.' });
+    }
+
+    // 비공개 그룹일 경우에만 비밀번호 검증
+    if (!group.isPublic) {
+      if (!groupPassword) {
+        return res.status(400).json({ message: '비공개 그룹에 대한 비밀번호가 필요합니다.' });
+      }
+
+      if (group.password !== groupPassword) {
+        return res.status(403).json({ message: '그룹 비밀번호가 일치하지 않습니다.' });
+      }
+    }
+
+    // 게시글 생성
+    const newPost = await prisma.post.create({
+      data: {
+        groupId: Number(groupId),
+        nickname,
+        title,
+        content,
+        password: postPassword, // postPassword는 post 모델의 password 필드로 저장
+        imageUrl,
+        tags: tags.join(','), // 배열을 문자열로 변환하여 저장
+        location,
+        moment: new Date(moment),
+        isPublic: Boolean(isPublic), // 문자열로 받을 경우 불리언으로 변환
+        likeCount: 0,
+        commentCount: 0,
+        createdAt: new Date(),
+      }
+    });
+
+    // 그룹의 게시물 수 증가
+    await prisma.group.update({
+      where: { id: Number(groupId) },
+      data: {
+        postCount: group.postCount + 1
+      }
+    });
+
+    // 성공 응답 반환
+    res.status(200).json({
+      id: newPost.id,
+      groupId: newPost.groupId,
+      nickname: newPost.nickname,
+      title: newPost.title,
+      content: newPost.content,
+      imageUrl: newPost.imageUrl,
+      tags: newPost.tags.split(','), // 저장된 문자열을 배열로 변환하여 반환
+      location: newPost.location,
+      moment: newPost.moment.toISOString().split('T')[0], // ISO 문자열에서 날짜 부분만 반환
+      isPublic: newPost.isPublic,
+      likeCount: newPost.likeCount,
+      commentCount: newPost.commentCount,
+      createdAt: newPost.createdAt
+    });
+
+  } catch (error) {
+    console.error('게시글 등록 중 오류 발생:', error);
+    res.status(500).json({ error: '게시글 등록 중 오류 발생', details: error.message });
+  }
+};
+
+
+// 게시글 목록 조회 함수
+export const viewPostList = async (req, res) => {
+  try {
+    const { groupId } = req.params; // URL 파라미터에서 groupId를 가져옴
+    const { page = 1, pageSize = 20, sortBy = 'latest', keyword, isPublic } = req.query; // 쿼리 파라미터에서 필터 및 페이징 옵션 가져옴
+
+    // 필터링 객체 초기화
+    const where = { groupId: Number(groupId) };
+
+    // 공개 여부 필터 적용
+    if (isPublic !== undefined) {
+      where.isPublic = isPublic === 'true'; // 문자열을 불리언으로 변환하여 필터링에 적용
+    }
+
+    // 검색어 필터 적용
+    if (keyword) {
+      where.OR = [
+        { title: { contains: keyword, mode: 'insensitive' } },
+        { tags: { contains: keyword, mode: 'insensitive' } },
+      ];
+    }
+
+    // 정렬 기준 설정
+    const orderBy =
+      sortBy === 'latest' ? { createdAt: 'desc' } :
+      sortBy === 'mostCommented' ? { commentCount: 'desc' } :
+      sortBy === 'mostLiked' ? { likeCount: 'desc' } :
+      { createdAt: 'desc' }; // 기본값은 'latest'
+
+    // 페이지네이션 설정
+    const skip = (parseInt(page) - 1) * parseInt(pageSize);
+    const take = parseInt(pageSize);
+
+    // 게시글 목록 조회
+    const posts = await prisma.post.findMany({
+      where,
+      orderBy,
+      skip,
+      take,
+    });
+
+    // 전체 아이템 수를 계산하여 총 페이지 수 계산
+    const totalItemCount = await prisma.post.count({ where });
+    const totalPages = Math.ceil(totalItemCount / pageSize);
+
+    // 조회 결과 응답
+    res.status(200).json({
+      currentPage: parseInt(page),
+      totalPages,
+      totalItemCount,
+      data: posts.map(post => ({
+        id: post.id,
+        nickname: post.nickname,
+        title: post.title,
+        imageUrl: post.imageUrl,
+        tags: post.tags.split(','), // 저장된 문자열을 배열로 변환하여 반환
+        location: post.location,
+        moment: post.moment.toISOString().split('T')[0], // ISO 문자열에서 날짜 부분만 반환
+        isPublic: post.isPublic,
+        likeCount: post.likeCount,
+        commentCount: post.commentCount,
+        createdAt: post.createdAt,
+      }))
+    });
+  } catch (error) {
+    console.error('게시글 목록 조회 중 오류 발생:', error);
+    res.status(500).json({ error: '게시글 목록 조회 중 오류 발생', details: error.message });
+  }
+};

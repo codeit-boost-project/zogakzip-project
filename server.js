@@ -23,9 +23,9 @@ app.use(morgan('combined'));
 
 // API 라우팅 설정
 app.use('/groups', groupRoutes); // 그룹
-app.use('api/posts', postRoutes); // 게시글
-app.use('api/comments', commentRoutes); // 댓글
-app.use('api/image', imageRoutes); // 이미지
+app.use('/posts', postRoutes); // 게시글
+app.use('/comments', commentRoutes); // 댓글
+app.use('/image', imageRoutes); // 이미지
 
 // 'uploads' 디렉토리의 파일을 정적 파일로 제공
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

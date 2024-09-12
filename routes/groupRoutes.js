@@ -8,6 +8,8 @@ import {
   checkGroupPermissions,
   likeGroup,
   checkGroupVisibility,
+  registerPost,
+  viewPostList
 } from '../controllers/groupController.js';
 
 const router = express.Router();
@@ -23,6 +25,9 @@ router.get('/:groupId', viewGroupDetails); // 그룹 상세 정보 조회 -> 완
 router.post('/:groupId/verify-password', checkGroupPermissions) // 그룹 조회 권한 확인 -> 완료
 router.post('/:groupId/like', likeGroup) // 그룹 공감 하기 -> 완료
 router.get('/:groupId/is-public', checkGroupVisibility) // 그룹 공개 여부 확인 -> 완료
+
+router.post('/:groupId/posts', registerPost); // 게시글 등록 -> 완료
+router.get('/:groupId/posts', viewPostList); // 게시글 목록 조회 -> 완료
 
 
 export default router;
