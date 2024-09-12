@@ -11,7 +11,7 @@ export const GROUPS = [
   },
   {
     name: "여행 애호가들",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725427177607.jpg",
     introduction: "여행지에서의 추억을 나누는 공간입니다.",
     isPublic: true,
     password: "travel123",
@@ -21,7 +21,7 @@ export const GROUPS = [
   },
   {
     name: "스포츠 팬클럽",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725427149073.jpg",
     introduction: "스포츠와 관련된 추억을 나누는 팬클럽입니다.",
     isPublic: true,
     password: "sports123",
@@ -31,7 +31,7 @@ export const GROUPS = [
   },
   {
     name: "독서 클럽",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426768159.jpeg",
     introduction: "읽었던 책과 느꼈던 감상을 기억해요.",
     isPublic: false,
     password: "book123",
@@ -41,7 +41,7 @@ export const GROUPS = [
   },
   {
     name: "등산 동호회",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725427124903.jpg",
     introduction: "등산의 순간과 풍경을 함께 기억하는 모임입니다.",
     isPublic: true,
     password: "hike123",
@@ -51,7 +51,7 @@ export const GROUPS = [
   },
   {
     name: "음악 감상",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426890997.jpeg",
     introduction: "음악으로 남긴 기억들을 공유합니다.",
     isPublic: false,
     password: "music123",
@@ -61,7 +61,7 @@ export const GROUPS = [
   },
   {
     name: "사진 동호회",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725427102042.jpg",
     introduction: "사진을 통해 남긴 추억을 나누는 그룹입니다.",
     isPublic: true,
     password: "photo123",
@@ -71,7 +71,7 @@ export const GROUPS = [
   },
   {
     name: "요가 클래스",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725427012497.jpg",
     introduction: "요가 수련 중 느낀 순간들을 기억합니다.",
     isPublic: true,
     password: "yoga123",
@@ -81,7 +81,7 @@ export const GROUPS = [
   },
   {
     name: "영화 감상 클럽",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426980997.jpg",
     introduction: "영화를 통해 느꼈던 감동을 기록하고 공유합니다.",
     isPublic: false,
     password: "movie123",
@@ -91,7 +91,7 @@ export const GROUPS = [
   },
   {
     name: "요리 연구회",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426946656.jpg",
     introduction: "다양한 요리와 그 순간을 기억하는 모임입니다.",
     isPublic: true,
     password: "cook123",
@@ -105,7 +105,7 @@ export const POSTS = [
   {
     nickname: "달봉이",
     title: "오늘 인천에서 월척을 낚았어요!",
-    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725426705171.jpg",
+    imageUrl: "https://web-project-mkuy.onrender.com/uploads/1725427331914.jpg",
     content: "인천에서 가족과 함께한 낚시에서 월척을 낚았어요. 모두가 놀랐던 순간!",
     tags: "가족, 낚시, 인천",
     location: "인천, 한국",
