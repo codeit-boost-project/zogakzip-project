@@ -9,11 +9,11 @@ const storage = multer.diskStorage({
     cb(null, './uploads'); // 이미지가 저장될 경로
   },
   filename: (req, file, cb) => {
-    
-    // 파일명을 안전하게 인코딩
-    const originalName = encodeURIComponent(file.originalname); // URL 인코딩
-    cb(null, originalName); // 인코딩된 파일명으로 설정
-  },
+    // 원래 파일명으로 저장 (파일명에 공백이나 특수문자가 있으면 URL에서 문제가 될 수 있어 안전한 파일명으로 변환)
+    // const originalName = file.originalname;
+    const originalName = Buffer.from(file.originalname,"latin1").toString("utf8");
+    cb(null, originalName); // 원래 파일명으로 설정
+  }
 });
 
 const upload = multer({ storage });
