@@ -78,33 +78,44 @@ export const deletePost = async (req, res) => {
     const { postPassword } = req.body; // 요청 바디에서 게시글 비밀번호를 가져옴
   
     try {
-      // 게시글 존재 여부 확인
+      // 게시물이 존재하는지 확인
       const existingPost = await prisma.post.findUnique({
-        where: { id: Number(postId) },
+          where: { id: Number(postId) },
+          select: { groupId: true, password: true } // 게시물의 groupId와 비밀번호 가져오기
       });
-  
+
       if (!existingPost) {
-        return res.status(404).json({ message: "존재하지 않습니다" }); // 게시글이 존재하지 않으면 404 응답
+          return res.status(404).json({ message: "존재하지 않는 게시물입니다" }); // 게시물이 존재하지 않으면 404 응답
       }
-  
-      // 비밀번호 검증
+
+      // 비밀번호 확인
       if (existingPost.password !== postPassword) {
-        return res.status(403).json({ message: "비밀번호가 틀렸습니다" }); // 비밀번호가 틀리면 403 응답
+          return res.status(403).json({ message: "비밀번호가 틀렸습니다" }); // 비밀번호가 틀리면 403 응답
       }
-  
-      // 게시글 삭제
+
+      // 게시물 삭제
       await prisma.post.delete({
-        where: { id: Number(postId) },
+          where: { id: Number(postId) },
       });
-  
-      // 성공적으로 삭제되었음을 응답
-      res.status(200).json({ message: "게시글이 성공적으로 삭제되었습니다" });
-  
-    } catch (error) {
-      console.error('게시글 삭제 중 오류 발생:', error);
-      res.status(500).json({ error: '게시글 삭제 중 오류 발생', details: error.message }); // 서버 오류 처리
-    }
-  };
+
+      // 해당 그룹의 postCount 업데이트
+      await prisma.group.update({
+          where: { id: existingPost.groupId }, // 기존 게시물의 groupId 사용
+          data: {
+              postCount: {
+                  decrement: 1, // postCount를 1 감소
+              },
+          },
+      });
+
+      // 삭제 성공 응답
+      res.status(200).json({ message: "게시물이 성공적으로 삭제되었습니다" });
+
+  } catch (error) {
+      console.error('게시물 삭제 중 오류 발생:', error);
+      res.status(500).json({ error: '게시물 삭제 중 오류 발생', details: error.message }); // 서버 오류 처리
+  }
+};
 
 
 // 게시글 조회 권한 확인
