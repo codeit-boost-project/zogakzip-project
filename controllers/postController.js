@@ -72,7 +72,6 @@ export const editPost = async (req, res) => {
   };
 
 
-  
 // 게시물 삭제
 export const deletePost = async (req, res) => {
     const { postId } = req.params; // URL 파라미터에서 postId를 가져옴
@@ -108,7 +107,6 @@ export const deletePost = async (req, res) => {
   };
 
 
-
 // 게시글 조회 권한 확인
 export const checkPostPermissions = async (req, res) => {
     const { postId } = req.params; // URL 매개변수에서 postId 가져오기
@@ -141,8 +139,7 @@ export const checkPostPermissions = async (req, res) => {
 };
 
 
-
-// 해당 추억 게시물의 상세 페이지로 이동
+// 해당 게시물의 상세 페이지로 이동
 export const viewPostDetails = async (req, res) => {
     const { postId } = req.params; // URL 매개변수에서 postId 가져오기
 
@@ -151,7 +148,7 @@ export const viewPostDetails = async (req, res) => {
       const post = await prisma.post.findUnique({
         where: { id: parseInt(postId) },
         include: { 
-          // 게시물에 달린 댓글과 그룹 공감 수
+          // 게시물에 달린 댓글
           comments: true, 
         }
       });
@@ -186,7 +183,6 @@ export const viewPostDetails = async (req, res) => {
   };
 
 
-
 // 게시물 공감 하기
 export const likePost = async (req, res) => {
     const { postId } = req.params; // URL 매개변수에서 postId 가져오기
@@ -202,12 +198,11 @@ export const likePost = async (req, res) => {
         return res.status(404).json({ message: '존재하지 않습니다' });
       }
   
-      // 게시글의 likeCount 증가 및 그룹의 likeCount도 증가
+      // 게시글의 likeCount 증가
       const updatedPost = await prisma.post.update({
         where: { id: parseInt(postId) },
         data: { likeCount: post.likeCount + 1 },
       });
-  
   
       return res.status(200).json({ message: '게시글에 좋아요를 눌렀습니다' });
     } catch (error) {
@@ -216,7 +211,6 @@ export const likePost = async (req, res) => {
       return res.status(500).json({ message: '서버 오류가 발생했습니다', details: error.message });
     }
   };
-
 
 
 // 게시글의 공개 여부 확인
@@ -243,6 +237,7 @@ export const checkPostVisibility = async (req, res) => {
       return res.status(500).json({ message: '서버 오류가 발생했습니다', details: error.message });
     }
   };
+
 
 // 댓글 등록
 export const registerComment = async (req, res) => {
@@ -274,6 +269,16 @@ export const registerComment = async (req, res) => {
       },
     });
 
+    // 게시물의 commentCount 증가
+    await prisma.post.update({
+      where: { id: parseInt(postId) },
+      data: {
+        commentCount: {
+          increment: 1, // 댓글 수 증가
+        },
+      },
+    });
+
     // 성공적인 응답 반환
     return res.status(200).json({
       id: newComment.id,
@@ -287,7 +292,6 @@ export const registerComment = async (req, res) => {
     return res.status(500).json({ message: '서버 오류가 발생했습니다', details: error.message });
   }
 };
-
 
 
 // 댓글 목록 조회
