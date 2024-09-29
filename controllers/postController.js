@@ -43,7 +43,8 @@ export const editPost = async (req, res) => {
           imageUrl,
           tags: tags.join(','), // 배열을 문자열로 변환하여 저장
           location,
-          moment: new Date(moment), // 날짜 형식 변환
+          // moment: new Date(moment), // 날짜 형식 변환
+          moment: moment,
           isPublic: Boolean(isPublic)
         }
       });
