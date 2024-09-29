@@ -43,7 +43,6 @@ export const editPost = async (req, res) => {
           imageUrl,
           tags: tags.join(','), // 배열을 문자열로 변환하여 저장
           location,
-          // moment: new Date(moment), // 날짜 형식 변환
           moment: moment,
           isPublic: Boolean(isPublic)
         }
@@ -59,7 +58,7 @@ export const editPost = async (req, res) => {
         imageUrl: updatedPost.imageUrl,
         tags: updatedPost.tags.split(','), // 저장된 문자열을 배열로 변환하여 반환
         location: updatedPost.location,
-        moment: updatedPost.moment.toISOString().split('T')[0], // ISO 문자열에서 날짜 부분만 반환
+        moment: updatedPost.moment,
         isPublic: updatedPost.isPublic,
         likeCount: updatedPost.likeCount,
         commentCount: updatedPost.commentCount,

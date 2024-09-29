@@ -377,7 +377,6 @@ export const registerPost = async (req, res) => {
         imageUrl,
         tags: tags.join(','), // 배열을 문자열로 변환하여 저장
         location,
-        // moment: new Date(moment),
         moment: moment,
         isPublic: Boolean(isPublic), // 문자열로 받을 경우 불리언으로 변환
         likeCount: 0,
@@ -404,7 +403,6 @@ export const registerPost = async (req, res) => {
       imageUrl: newPost.imageUrl,
       tags: newPost.tags.split(','), // 저장된 문자열을 배열로 변환하여 반환
       location: newPost.location,
-      // moment: newPost.moment.toISOString().split('T')[0], // ISO 문자열에서 날짜 부분만 반환
       moment: newPost.moment,
       isPublic: newPost.isPublic,
       likeCount: newPost.likeCount,
@@ -476,7 +474,6 @@ export const viewPostList = async (req, res) => {
         imageUrl: post.imageUrl,
         tags: post.tags.split(','), // 저장된 문자열을 배열로 변환하여 반환
         location: post.location,
-        // moment: post.moment.toISOString().split('T')[0], // ISO 문자열에서 날짜 부분만 반환
         moment: post.moment,
         isPublic: post.isPublic,
         likeCount: post.likeCount,
