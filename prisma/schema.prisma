@@ -42,7 +42,7 @@ model Post {
   content      String
   tags         String    @db.VarChar(255)
   location     String    @db.VarChar(255)
-  moment       DateTime
+  moment       String
   isPublic     Boolean
   password     String    @db.VarChar(255)
   likeCount    Int       @default(0)

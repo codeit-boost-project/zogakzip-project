@@ -22,6 +22,7 @@ export const registerGroup = async (req, res) => {
     }
 };
 
+
 // 그룹 정보 수정
 export const editGroup = async (req, res) => {
     try {
@@ -57,6 +58,7 @@ export const editGroup = async (req, res) => {
     }
 };
 
+
 // 그룹 삭제
 export const deleteGroup = async (req, res) => {
     try {
@@ -82,11 +84,12 @@ export const deleteGroup = async (req, res) => {
     }
 };
 
+
 // 그룹 목록 조회
 export const viewGroupList = async (req, res) => {
   try {
     // 요청에서 페이지, 페이지 크기, 정렬 기준, 검색 키워드, 공개 여부 가져오기
-    const { page = 1, pageSize = 10, sortBy = 'latest', keyword, isPublic } = req.query;
+    const { page = 1, pageSize = 8, sortBy = 'latest', keyword, isPublic } = req.query;
 
     const where = {};
 
@@ -126,8 +129,10 @@ export const viewGroupList = async (req, res) => {
 
     // 각 그룹에 대해 배지 갯수를 확인하고 업데이트
     const groupsWithBadgeCount = await Promise.all(groups.map(async (group) => {
+
       // 그룹에 부여할 배지 ID 목록 가져오기
       const badgeIdsToGrant = await getBadgeIdsForGroup(group);
+
       // 배지를 그룹에 부여
       await grantBadgeToGroup(group.id, badgeIdsToGrant);
 
@@ -154,6 +159,7 @@ export const viewGroupList = async (req, res) => {
 
     // 전체 그룹 수 계산
     const totalItemCount = await prisma.group.count({ where });
+
     // 전체 페이지 수 계산
     const totalPages = Math.ceil(totalItemCount / pageSize);
 
@@ -179,6 +185,7 @@ export const viewGroupList = async (req, res) => {
     res.status(500).json({ error: 'Error retrieving group list', details: error.message });
   }
 };
+
 
 // 그룹 상세 정보 조회
 export const viewGroupDetails = async (req, res) => {
@@ -263,6 +270,7 @@ export const checkGroupPermissions = async (req, res) => {
     }
 };
 
+
 // 해당 그룹의 공개 여부 확인
 export const checkGroupVisibility = async (req, res) => {
     try {
@@ -326,6 +334,7 @@ export const likeGroup = async (req, res) => {
     }
 };
 
+
 // 게시물 등록
 export const registerPost = async (req, res) => {
   try {
@@ -368,7 +377,8 @@ export const registerPost = async (req, res) => {
         imageUrl,
         tags: tags.join(','), // 배열을 문자열로 변환하여 저장
         location,
-        moment: new Date(moment),
+        // moment: new Date(moment),
+        moment: moment,
         isPublic: Boolean(isPublic), // 문자열로 받을 경우 불리언으로 변환
         likeCount: 0,
         commentCount: 0,
@@ -412,7 +422,7 @@ export const registerPost = async (req, res) => {
 export const viewPostList = async (req, res) => {
   try {
     const { groupId } = req.params; // URL 파라미터에서 groupId를 가져옴
-    const { page = 1, pageSize = 20, sortBy = 'latest', keyword, isPublic } = req.query; // 쿼리 파라미터에서 필터 및 페이징 옵션 가져옴
+    const { page = 1, pageSize = 8, sortBy = 'latest', keyword, isPublic } = req.query; // 쿼리 파라미터에서 필터 및 페이징 옵션 가져옴
 
     // 필터링 객체 초기화
     const where = { groupId: Number(groupId) };
