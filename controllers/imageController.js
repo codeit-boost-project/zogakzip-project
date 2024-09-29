@@ -5,12 +5,8 @@ export const uploadImage = (req, res) => {
   }
 
   // 업로드된 이미지의 URL을 생성
-  // const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-  // res.status(200).json({ imageUrl }); // 업로드된 이미지의 URL을 반환
-
-    // 업로드된 이미지의 파일명 생성
-    const fileName = req.file.filename; // 파일명만 추출
-    res.status(200).json({ fileName }); // 파일명만 반환
+  const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+  res.status(200).json({ imageUrl }); // 업로드된 이미지의 URL을 반환
 
 };
 
