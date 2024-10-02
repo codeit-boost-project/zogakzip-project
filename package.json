@@ -17,7 +17,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "build": "npm install --production && ./node_modules/.bin/prisma migrate deploy && ./node_modules/.bin/prisma generate"
+    "build": "npm install --production && chmod +x ./node_modules/.bin/prisma && npx prisma migrate deploy && npx prisma generate"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
